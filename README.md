@@ -1,3 +1,5 @@
+## git 과 React , Nodejs를 연습하기위한 프로젝트
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
