@@ -17,7 +17,7 @@ const styles = theme => ({
 
   root : {
     width : '100%',
-    marginTop : theme.spacing.unit * 3,
+    marginTop : theme.spacing(3),
     overflowX : "auto"
   },
   table :{
@@ -28,7 +28,7 @@ const styles = theme => ({
 
   progress : {
 
-    margin : theme.spacing.unit * 2
+    margin : theme.spacing(2)
 
   }
 
@@ -52,11 +52,18 @@ state = {
 }
 
 componentDidMount() {
+  this.timer = setInterval(this.progress, 20);
+
   this.callApi()
   .then(res => this.setState({customers : res}))
   .catch(err => console.log(err))
   
-  this.timer = setInterval(this.progress, 20);
+}
+
+componentWillUnmount() {
+ 
+  clearInterval(this.timer);
+
 }
 
 callApi = async () => {
@@ -84,12 +91,11 @@ callApi = async () => {
             <TableBody>
           {this.state.customers ? this.state.customers.map(c => {
              return ( <Customer key = {c.id} id = {c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />);
-             }) : "" }
-             <TableRow>
-               <TableCell colSpan="6" align="center">
-                 <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
-               </TableCell>
-             </TableRow>
+             }) : <TableRow>
+             <TableCell colSpan="6" align="center">
+               <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
+             </TableCell>
+           </TableRow> }
             </TableBody>
           </Table>
         </Paper>
