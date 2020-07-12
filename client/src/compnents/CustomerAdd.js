@@ -23,6 +23,20 @@ class CustomerAdd extends React.Component {
         e.preventDefault();
         this.addCustomer()
             .then( res => console.log)
+        
+        this.setState ({
+
+            file : null,
+            userName : '',
+            birthday : '',
+            gender : '',
+            job : '',
+            fileName : ''
+            
+        })
+
+        window.location.reload();
+        
     }
 
     handleFileChange = (e) => {
@@ -38,6 +52,7 @@ class CustomerAdd extends React.Component {
        let nextState = {};
        nextState[e.target.name] = e.target.value;
        this.setState (nextState);
+
        
     }
 
@@ -45,15 +60,14 @@ class CustomerAdd extends React.Component {
 
     addCustomer = () => {
 
-        const url= 'api/customers';
+        const url= '/api/customers';
         const formData = new FormData();
         formData.append('image', this.state.file)
-        formData.append('name', this.state.name)
+        formData.append('name', this.state.userName)
         formData.append('birthday', this.state.birthday)
         formData.append('gender', this.state.gender)
         formData.append('job', this.state.job)
 
-        //파일전송시 헤더 추가.
 
         const config = {
             headers : {
