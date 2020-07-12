@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Customer from './compnents/Customer'
+import CustomerAdd from './compnents/CustomerAdd'
 import './App.css';
 
 import Paper from  '@material-ui/core/Paper';
@@ -76,6 +77,7 @@ callApi = async () => {
   render(){
     const {classes} = this.props;
       return (
+        <div>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
@@ -99,7 +101,8 @@ callApi = async () => {
             </TableBody>
           </Table>
         </Paper>
-
+        <CustomerAdd/>
+        </div>
             );
           }
 }
