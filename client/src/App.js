@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Customer from './compnents/Customer'
 import CustomerAdd from './compnents/CustomerAdd'
 import './App.css';
-
 import Paper from  '@material-ui/core/Paper';
 import Table from  '@material-ui/core/Table';
 import TableHead from  '@material-ui/core/TableHead';
@@ -46,11 +45,32 @@ this.setState({ completed : completed >=  100 ? 0 : completed + 1 });
 
 }
 
-state = {
+constructor(props) {
 
-  customers:"",
-  completed : 0 
+  super(props);
+    
+  this.state = {
+
+    customers: '',
+    completed : 0
+  }
 }
+
+stateRefresh = () => {
+
+  this.setState({
+
+    customers: '',
+    completed : 0
+    
+  });
+
+  this.callApi()
+  .then(res => this.setState({customers : res}))
+  .catch(err => console.log(err))
+
+}
+
 
 componentDidMount() {
   this.timer = setInterval(this.progress, 20);
@@ -101,7 +121,7 @@ callApi = async () => {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
         </div>
             );
           }
