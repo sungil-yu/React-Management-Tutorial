@@ -7,9 +7,38 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true}));
 
-app.get('/api/hello', (req, res) =>{
+app.get('/api/customers', (req,res) =>{
+    res.send([
+        {
+        'id' : 1,
+        'image' : 'https://placeimg.com/64/64/1',
+        'name' :"홍길동",
+        'birthday' : '951006',
+        'gender' : '남자',
+        'job' : '학생'
+      
+      },
+      {
+        'id' : 2,
+        'image' : 'https://placeimg.com/64/64/2',
+        'name' :"이순신",
+        'birthday' : '942006',
+        'gender' : '남자',
+        'job' : '대장'
+      
+      },
+      {
+        'id' : 3,
+        'image' : 'https://placeimg.com/64/64/3',
+        'name' :"을지문덕",
+        'birthday' : '913006',
+        'gender' : '남자',
+        'job' : '시민'
+      
+      }
+      
+      ]);
 
-    res.send({message : 'Hello Express!'});
 
 });
 
