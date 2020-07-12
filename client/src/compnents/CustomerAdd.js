@@ -20,7 +20,9 @@ class CustomerAdd extends React.Component {
     }
 
     handleFormSubmit = (e) =>{
-        e.preventDefault();
+        
+        e.preventDefault()
+
         this.addCustomer()
             .then((res) => {
                 console.log(res.data);
