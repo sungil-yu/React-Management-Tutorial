@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true}));
 
@@ -58,9 +59,9 @@ app.post('/api/customers' , upload.single('image'), (req,res) =>{
 app.delete('/api/customers/:id' ,(req, res) =>{
 
     let sql = "UPDATE CUSTOMER SET isDeleted = 1 where id = ?";
-    let parmas = [req.params.id];
+    let params = [req.params.id];
 
-    con.query(sql, parmas,
+    con.query(sql, params,
 
         (err,rows,fields) => {
 
